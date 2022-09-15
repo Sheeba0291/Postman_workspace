@@ -1,0 +1,446 @@
+{
+	"info": {
+		"_postman_id": "c14cb252-d72c-409c-bd93-c8372281ab62",
+		"name": "Week1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9628977"
+	},
+	"item": [
+		{
+			"name": "Calci-Add-SOAP",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//assert\r",
+							"pm.test(\"status code 200 verify\", function()\r",
+							"{\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"//assert\r",
+							"pm.test(\"Body has String\", function()\r",
+							"{\r",
+							"    pm.expect(pm.response.text()).to.include(\"AddResponse\");\r",
+							"})\r",
+							"\r",
+							"//assert\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"50\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml; charset=utf-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <Add xmlns=\"http://tempuri.org/\">\r\n      <intA>20</intA>\r\n      <intB>30</intB>\r\n    </Add>\r\n  </soap:Body>\r\n</soap:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "www.dneonline.com/calculator.asmx",
+					"host": [
+						"www",
+						"dneonline",
+						"com"
+					],
+					"path": [
+						"calculator.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ServiceNow-CreateRequest",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "apYW1c==2PUv",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"short_description\":\"Issue created by Sheeba\",\"comments\":\"Please work on priority\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev90698.service-now.com/api/now/table/incident",
+					"protocol": "https",
+					"host": [
+						"dev90698",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ServiceNow-GetRequest",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "apYW1c==2PUv",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dev90698.service-now.com/api/now/table/incident/sys_id?INC0000011",
+					"protocol": "https",
+					"host": [
+						"dev90698",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident",
+						"sys_id"
+					],
+					"query": [
+						{
+							"key": "INC0000011",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Assignment1 - GET (Retrieve all the records)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "apYW1c==2PUv",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dev90698.service-now.com/api/now/table/incident",
+					"protocol": "https",
+					"host": [
+						"dev90698",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Assignment2 - GET (Retrieve a record by sys_id)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "apYW1c==2PUv",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dev90698.service-now.com/api/now/table/incident?sys_id=1c741bd70b2322007518478d83673af3",
+					"protocol": "https",
+					"host": [
+						"dev90698",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident"
+					],
+					"query": [
+						{
+							"key": "sys_id",
+							"value": "1c741bd70b2322007518478d83673af3"
+						},
+						{
+							"key": "sysparm_display_value",
+							"value": "sys_id",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Assignment3 - POST (Create an Incident)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "apYW1c==2PUv",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"short_description\":\"Complaince Issue raised by Sheeba\",\r\n\"description\":\"Check the Complaince\",\r\n\"comments\":\"Please fix it on Priority\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev90698.service-now.com/api/now/table/incident",
+					"protocol": "https",
+					"host": [
+						"dev90698",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Assignment4 - PUT (Modify a record)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "apYW1c==2PUv",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev90698.service-now.com/api/now/table/incident/0deb82bf1b311510e2837596cc4bcb75",
+					"protocol": "https",
+					"host": [
+						"dev90698",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident",
+						"0deb82bf1b311510e2837596cc4bcb75"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Assignment5 - PATCH (Update a record)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "apYW1c==2PUv",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comments\":\"Please fix it on Priority - It is HIGH Severity\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev90698.service-now.com/api/now/table/incident/0deb82bf1b311510e2837596cc4bcb75",
+					"protocol": "https",
+					"host": [
+						"dev90698",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident",
+						"0deb82bf1b311510e2837596cc4bcb75"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Assignment6 - DELETE(Delete a record)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "apYW1c==2PUv",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev90698.service-now.com/api/now/table/incident/0deb82bf1b311510e2837596cc4bcb75",
+					"protocol": "https",
+					"host": [
+						"dev90698",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident",
+						"0deb82bf1b311510e2837596cc4bcb75"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
