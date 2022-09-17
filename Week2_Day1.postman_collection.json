@@ -1,0 +1,270 @@
+{
+	"info": {
+		"_postman_id": "78058399-9cd9-42c5-be65-0a87466ced34",
+		"name": "Week2_Day1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9628977"
+	},
+	"item": [
+		{
+			"name": "POST (Create an Incident)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"C_response = pm.response.json();\r",
+							"pm.globals.set(\"C_Sysid\", C_response.result.sys_id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"short_description\":\"Complaince Issue raised by Sheeba\",\r\n\"description\":\"Check the Complaince\",\r\n\"comments\":\"Please fix it on Priority\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{HostName}}/api/now/table/incident",
+					"protocol": "https",
+					"host": [
+						"{{HostName}}"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET (Retrieve a record by sys_id)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{HostName}}/api/now/table/incident/{{C_Sysid}}",
+					"protocol": "https",
+					"host": [
+						"{{HostName}}"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident",
+						"{{C_Sysid}}"
+					],
+					"query": [
+						{
+							"key": "sys_id",
+							"value": "1c741bd70b2322007518478d83673af3",
+							"disabled": true
+						},
+						{
+							"key": "sysparm_display_value",
+							"value": "sys_id",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT (Modify a record)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"short_description\":\"Complaince Issue raised by Sheeba (with few updates)\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{HostName}}/api/now/table/incident/{{C_Sysid}}",
+					"protocol": "https",
+					"host": [
+						"{{HostName}}"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident",
+						"{{C_Sysid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH (Update a record)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comments\":\"Please fix it on Priority - It is HIGH Severity\",\r\n    \"short_description\":\"Complaince Issue raised by Sheeba (updates removed)\",\r\n\"description\":\"Check the Complaince and work on it.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{HostName}}/api/now/table/incident/{{C_Sysid}}",
+					"protocol": "https",
+					"host": [
+						"{{HostName}}"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident",
+						"{{C_Sysid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE(Delete a record)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{HostName}}/api/now/table/incident/{{C_Sysid}}",
+					"protocol": "https",
+					"host": [
+						"{{HostName}}"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident",
+						"{{C_Sysid}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "apYW1c==2PUv",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

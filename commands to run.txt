@@ -1,0 +1,4 @@
+// Command to run week2_day1 via cmd (Newman)
+
+// Run from the location where the file is placed.
+newman run D:\TestLeaf\RestAPI\workspace\Week2_Day1.postman_collection.json -e D:\TestLeaf\RestAPI\workspace\SheebaEnv.postman_environment.json -g D:\TestLeaf\RestAPI\workspace\workspace.postman_globals.json -r htmlextra
